@@ -1,0 +1,49 @@
+[
+  {
+    "mass": 198900000,
+    "density": 1,
+    "color": "#FFE484",
+    "position": [0, 0],
+    "movementVector": [0, 0]
+  },
+
+  {
+    "mass": 59721.9,
+    "density": 0.01,
+    "color": "#FF8844",
+    "position": [-1500, 0],
+    "movementVector": [0, -0.003]
+  },
+
+  {
+    "mass": 59721.9,
+    "density": 0.01,
+    "color": "#6B93D6",
+    "position": [-3000, 0],
+    "movementVector": [0, -0.002]
+  },
+
+  {
+    "mass": 59721.9,
+    "density": 0.01,
+    "color": "#FF8888",
+    "position": [-4500, 0],
+    "movementVector": [0, -0.001]
+  },
+
+  {
+    "mass": 200000,
+    "density": 0.1,
+    "color": "#88FF88",
+    "position": [-6000, 0],
+    "movementVector": [0, -0.0014]
+  },
+
+  {
+    "mass": 10000,
+    "density": 0.1,
+    "color": "#777777",
+    "position": [-6200, 0],
+    "movementVector": [0, -0.00165]
+  }
+]

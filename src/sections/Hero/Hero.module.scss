@@ -1,0 +1,153 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss";
+
+.hero {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  scroll-margin-top: 100px;
+  padding: 3rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    z-index: -1;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mixins.media-max(sm) {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+
+  @include mixins.media-max(md) {
+    font-size: 3rem;
+  }
+
+  @include mixins.media-max(sm) {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+
+  @include mixins.media-max(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: #bdbdbd;
+
+  @include mixins.media-max(sm) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+
+  margin-top: 2rem;
+
+  @include mixins.media-max(sm) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  @include mixins.media-max(sm) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+  }
+}
+
+.secondaryButton {
+  border: 2px solid #6366f1;
+
+  &:hover {
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.planetsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0.1;
+    z-index: 1;
+  }
+}

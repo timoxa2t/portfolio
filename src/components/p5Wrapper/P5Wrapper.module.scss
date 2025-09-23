@@ -1,0 +1,14 @@
+.p5Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p5Canvas {
+  width: 700px;
+  height: 700px;
+
+  canvas {
+    display: block;
+  }
+}

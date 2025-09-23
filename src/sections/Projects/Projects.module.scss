@@ -1,0 +1,139 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss";
+
+.projects {
+  padding: 5rem 0;
+  background: #1a1a1a;
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mixins.media-max(sm) {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #fff;
+
+  @include mixins.media-max(sm) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.projectCard {
+  background: #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+  }
+}
+
+.projectImage {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-color: #333;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(139, 92, 246, 0.3) 100%
+    );
+  }
+}
+
+.projectContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.projectTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.projectDescription {
+  color: #bdbdbd;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.techChip {
+  background: #333;
+  color: #6366f1;
+  font-size: 0.75rem;
+}
+
+.projectActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.demoButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: #6366f1;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:hover {
+    background: #5856eb;
+  }
+}
+
+.codeButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #6366f1;
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:hover {
+    color: #fff;
+    background: #5856eb;
+  }
+}

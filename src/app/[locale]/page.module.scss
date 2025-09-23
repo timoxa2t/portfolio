@@ -1,0 +1,52 @@
+@import "@/styles/mixins.scss";
+
+.canvasContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Mobile-first responsive height
+  min-height: 300px;
+  height: 50vh;
+
+  @include media-min(sm) {
+    min-height: 400px;
+    height: 60vh;
+  }
+
+  @include media-min(md) {
+    min-height: 500px;
+    height: 70vh;
+  }
+
+  @include media-min(lg) {
+    min-height: 600px;
+    height: 80vh;
+  }
+
+  @include media-min(xl) {
+    min-height: 700px;
+    height: 85vh;
+  }
+}
+
+.heroSection {
+  // Will use Bootstrap flex classes in JSX
+}
+
+.heroTitle {
+  background: linear-gradient(135deg, var(--foreground), var(--text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  color: var(--text-muted);
+}
+
+.heroActions {
+  // Will use Bootstrap flex classes in JSX
+}

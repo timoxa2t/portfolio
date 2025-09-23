@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "title": "John Doe",
+    "subtitle": "Fullstack Developer",
+    "description": "Passionate about creating amazing web experiences with modern technologies.",
+    "cta": {
+      "primary": "View My Work",
+      "secondary": "Contact Me"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "imageAlt": "Profile Picture",
+    "description": "I tried C++, java, and Android development, but when I tried JS that's when I knew what I want to do. Modern web development with TypeScript and Node is a way to go. I have experience working in production company, outsource development company and now I'm working as a freelancer. Feel free to contact me if you want to work together or have any questions.",
+    "experience": {
+      "title": "Experience",
+      "description": "3 years as 1C developer(mostly working with SQL), 2+ years in web development"
+    },
+    "passion": {
+      "title": "Passion",
+      "description": "Creating amazing user experiences"
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "frontend": {
+      "title": "Frontend"
+    },
+    "backend": {
+      "title": "Backend"
+    },
+    "tools": {
+      "title": "Tools"
+    }
+  },
+  "projects": {
+    "title": "My Projects",
+    "demo": "Demo",
+    "code": "Code",
+    "todo": {
+      "title": "Todo App",
+      "description": "Nothing to add"
+    },
+    "landing": {
+      "title": "Landing Page",
+      "description": "Group project that was made in a week"
+    },
+    "planets": {
+      "title": "Planets gravity sim",
+      "description": "Hobby project that simulates planets gravity"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "info": {
+      "title": "Contact Information",
+      "email": "your.email@example.com",
+      "phone": "+1 (555) 123-4567",
+      "location": "Kyiv, Ukraine"
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message"
+    }
+  },
+  "sections": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "planets": {
+    "tail": "Tail Length",
+    "speed": "Speed",
+    "mass": "Mass",
+    "density": "Density",
+
+    "solidBorders": "Solid Borders",
+    "isInteracted": "Interacted",
+
+    "instruction1": "Click on the planet and hold",
+    "instruction2": "to increase its size"
+  }
+}

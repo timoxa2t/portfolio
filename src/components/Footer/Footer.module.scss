@@ -1,0 +1,35 @@
+.footer {
+  background: var(--background-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  height: 100px;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  color: var(--text-muted);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.links {
+  // Will use Bootstrap flex classes in JSX
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--foreground);
+  }
+}

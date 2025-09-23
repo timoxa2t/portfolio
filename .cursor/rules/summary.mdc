@@ -1,0 +1,20 @@
+---
+description: Project description
+globs:
+alwaysApply: true
+---
+
+## Portfolio Website
+
+This is a **Next.js portfolio website** for a fullstack developer transitioning to freelancing. The project showcases technical skills through:
+
+**Key Features:**
+
+- Interactive visual components (e.g., Planets.tsx - a physics-based solar system simulation using p5.js)
+- Internationalization support (English/Ukrainian)
+- TypeScript + SCSS modules
+- Material-UI components
+
+**Tech Stack:** Next.js, TypeScript, React, SCSS, p5.js, MUI, SQL
+
+**Purpose:** Demonstrate technical expertise and creative problem-solving to attract freelance clients through engaging interactive experiences and clean, professional presentation.

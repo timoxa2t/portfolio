@@ -1,0 +1,66 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss";
+
+.skills {
+  padding: 5rem 0;
+  background: #0f0f0f;
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mixins.media-max(sm) {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #fff;
+
+  @include mixins.media-max(sm) {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.skillCategory {
+  text-align: center;
+  padding: 2rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  height: 100%;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @include mixins.media-max(sm) {
+    margin-bottom: 2rem;
+  }
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #6366f1;
+
+  @include mixins.media-max(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}

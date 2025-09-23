@@ -1,0 +1,92 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss";
+
+.about {
+  padding: 5rem 0;
+  background: #1a1a1a;
+  position: relative;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mixins.media-max(sm) {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  margin-bottom: 3rem !important;
+  color: #fff;
+  text-align: center;
+}
+
+.imageContainer {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 200px;
+  aspect-ratio: 1/1.3;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+
+  @include mixins.media-min(md) {
+    width: 200px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.textContent {
+  padding-right: 2rem;
+  margin-bottom: 2rem;
+
+  @include mixins.media-max(sm) {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #bdbdbd;
+
+  @include mixins.media-max(sm) {
+    font-size: 1rem;
+  }
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: #2a2a2a;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.cardTitle {
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cardDescription {
+  color: #bdbdbd;
+  line-height: 1.5;
+}

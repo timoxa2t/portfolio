@@ -1,0 +1,56 @@
+.link {
+  color: inherit;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  position: relative;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  &.active {
+    &::after {
+      background-size: 100% 100%;
+      background-position-x: left;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 6px;
+    background-image: linear-gradient(to bottom, #8b5cf6 0%, #8b5cf6 100%);
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    background-position-x: right;
+    transition: background-size 0.3s ease;
+  }
+}
+
+.text {
+  // background-image: linear-gradient(
+  //   to bottom,
+  //   transparent 0%,
+  //   transparent 90%,
+  //   #8b5cf6 90%,
+  //   #8b5cf6 100%
+  // );
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  background-position-x: right;
+  transition: background-size 0.3s ease;
+
+  .link:hover &,
+  .active & {
+    color: inherit;
+    background-size: 100% 100%;
+    background-position-x: left;
+  }
+}

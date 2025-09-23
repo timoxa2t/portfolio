@@ -1,0 +1,110 @@
+@use "@/styles/mixins.scss";
+
+.header {
+  height: 100px;
+  position: sticky;
+  top: 0;
+  @include mixins.z-index(sticky);
+  background: var(--background);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.linksContainer {
+  display: none;
+  gap: 12px;
+  height: 100%;
+
+  @include mixins.media-min(sm) {
+    align-items: center;
+    gap: 16px;
+    display: flex;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  padding: 0 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.menuButton {
+  color: var(--foreground);
+}
+
+.sideBar {
+  position: relative;
+  width: 280px;
+  min-height: 100vh;
+  padding-top: 90px;
+  background: var(--background);
+
+  @include mixins.media-min(sm) {
+    width: 320px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  @include mixins.media-min(sm) {
+    top: 6px;
+    right: 6px;
+  }
+}
+
+.sideBarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sideBarLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  :global(.link) {
+    padding: 12px 0;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: 500;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+.headerLink {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

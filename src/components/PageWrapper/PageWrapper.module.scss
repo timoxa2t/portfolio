@@ -1,0 +1,13 @@
+// Using Bootstrap classes for layout
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  position: relative;
+}

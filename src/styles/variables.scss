@@ -1,0 +1,39 @@
+// ========================================
+// BOOTSTRAP COMPATIBLE BREAKPOINTS
+// ========================================
+
+// Bootstrap breakpoints (for consistency with Bootstrap responsive utilities)
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+// ========================================
+// CUSTOM Z-INDEX VALUES
+// ========================================
+
+// Custom z-index values for components not covered by Bootstrap/MUI
+$z-indices: (
+  hide: -1,
+  auto: auto,
+  base: 0,
+  sticky: 1020,
+  modal: 1050,
+  tooltip: 1070,
+  max: 9999,
+);
+
+// ========================================
+// PROJECT-SPECIFIC CUSTOM PROPERTIES
+// ========================================
+
+// Any project-specific values that can't be handled by Bootstrap/MUI
+$custom-properties: (
+  header-height: 60px,
+  footer-height: 80px,
+  sidebar-width: 280px,
+);
