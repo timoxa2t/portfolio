@@ -1,0 +1,71 @@
+---
+description: Comprehensive deployment guide for Next.js portfolio with Docker, nginx, and HTTPS
+globs:
+alwaysApply: true
+---
+
+# Portfolio Deployment Guide
+
+## Server Setup (Digital Ocean Droplet)
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- Domain name pointing to the server IP
+- Git access to the repository
+
+### Deployment Architecture
+
+- **App Container**: Next.js application (standalone build)
+- **Nginx Container**: Reverse proxy with SSL termination
+- **Certbot Container**: Automatic SSL certificate management
+
+### Quick Deploy Commands
+
+```bash
+# Clone repository
+git clone <repository-url> /opt/portfolio
+cd /opt/portfolio/docker/prod
+
+# First time setup - get SSL certificates
+./scripts/init-letsencrypt.sh your-email@example.com
+
+# Regular deployment
+./scripts/deploy.sh
+
+# Check status
+docker compose ps
+docker compose logs -f
+```
+
+### SSL Certificate Setup
+
+1. **First time**: Run `./scripts/init-letsencrypt.sh your-email@example.com`
+2. **Automatic renewal**: Certbot container handles renewal automatically
+3. **Domain configured**: <your.domain>
+
+### File Structure
+
+```
+docker/prod/
+├── compose.yml          # Main deployment configuration
+├── nginx/
+│   ├── nginx.conf       # Nginx configuration
+│   └── ssl.conf         # SSL settings
+└── scripts/
+    ├── deploy.sh        # Deployment script
+    └── init-letsencrypt.sh # Initial SSL setup
+```
+
+### Monitoring & Maintenance
+
+- Logs: `docker compose -f docker/prod/compose.yml logs -f`
+- Restart: `docker compose -f docker/prod/compose.yml restart`
+- Update: `git pull && docker compose -f docker/prod/compose.yml up -d --build`
+
+### Security Features
+
+- HTTPS enforced with HSTS
+- Security headers configured
+- Non-root user in containers
+- Automatic certificate renewal
