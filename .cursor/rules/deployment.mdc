@@ -28,7 +28,7 @@ git clone <repository-url> /opt/portfolio
 cd /opt/portfolio/docker/prod
 
 # First time setup - get SSL certificates
-./scripts/init-letsencrypt.sh your-email@example.com
+./scripts/init-letsencrypt.sh your-email@example.com yourdomain.com
 
 # Regular deployment
 ./scripts/deploy.sh
@@ -40,9 +40,9 @@ docker compose logs -f
 
 ### SSL Certificate Setup
 
-1. **First time**: Run `./scripts/init-letsencrypt.sh your-email@example.com`
+1. **First time**: Run `./scripts/init-letsencrypt.sh your-email@example.com yourdomain.com`
 2. **Automatic renewal**: Certbot container handles renewal automatically
-3. **Domain configured**: <your.domain>
+3. **Domain configured**: yourdomain.com
 
 ### File Structure
 

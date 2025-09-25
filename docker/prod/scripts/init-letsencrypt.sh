@@ -4,12 +4,18 @@
 # Usage: ./init-letsencrypt.sh <email>
 
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 <email>"
-    echo "Example: $0 admin@tymoshov.net.ua"
+    echo "Usage: $0 <email> <domain>"
+    echo "Example: $0 admin@gmail.com tymoshov.info"
     exit 1
 fi
 
-DOMAIN="tymoshov.net.ua"
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <email> <domain>"
+    echo "Example: $0 admin@gmail.com tymoshov.info"
+    exit 1
+fi
+
+DOMAIN=$2
 EMAIL=$1
 DATA_PATH="./certbot"
 RSA_KEY_SIZE=4096
