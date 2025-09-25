@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Initial Let's Encrypt certificate setup script for tymoshov.net.ua
-# Usage: ./init-letsencrypt.sh <email>
+# Initial Let's Encrypt certificate setup script with dynamic domain configuration
+# Usage: ./init-letsencrypt.sh <email> <domain>
 
 
 if [ $# -ne 2 ]; then
@@ -15,6 +15,27 @@ EMAIL=$1
 DATA_PATH="./certbot"
 RSA_KEY_SIZE=4096
 STAGING=0 # Set to 1 if testing
+
+# Configure nginx with the domain
+echo "### Configuring nginx for domain $DOMAIN..."
+
+# Use template files if they exist, otherwise modify existing files
+if [ -f "./nginx/nginx.conf.template" ]; then
+    sed "s/{{DOMAIN}}/$DOMAIN/g" ./nginx/nginx.conf.template > ./nginx/nginx.conf
+    echo "Generated nginx.conf from template"
+else
+    sed -i "s/{{DOMAIN}}/$DOMAIN/g" ./nginx/nginx.conf
+    echo "Updated existing nginx.conf"
+fi
+
+if [ -f "./nginx/ssl.conf.template" ]; then
+    sed "s/{{DOMAIN}}/$DOMAIN/g" ./nginx/ssl.conf.template > ./nginx/ssl.conf
+    echo "Generated ssl.conf from template"
+else
+    sed -i "s/{{DOMAIN}}/$DOMAIN/g" ./nginx/ssl.conf
+    echo "Updated existing ssl.conf"
+fi
+echo
 
 # Check if certificates already exist
 if [ -d "$DATA_PATH/conf/live/$DOMAIN" ]; then

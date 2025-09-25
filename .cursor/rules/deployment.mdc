@@ -8,11 +8,124 @@ alwaysApply: true
 
 ## Server Setup (Digital Ocean Droplet)
 
+### Initial Server Preparation
+
+Before deploying the portfolio, you need to prepare a fresh Ubuntu server with Docker and other essential tools.
+
+#### 1. Create and Access Your Droplet
+
+```bash
+# SSH into your new Ubuntu 20.04+ droplet
+ssh root@your-server-ip
+
+# Update package index
+sudo apt update
+sudo apt upgrade -y
+```
+
+#### 2. Install Docker
+
+Based on the [DigitalOcean Docker installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04):
+
+```bash
+# Install prerequisites
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+# Add Docker's official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Add Docker repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update package index and install Docker
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Verify Docker installation
+sudo docker --version
+docker --version
+```
+
+#### 3. Install Docker Compose
+
+```bash
+# Download Docker Compose (check for latest version)
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Make it executable
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Verify installation
+docker-compose --version
+```
+
+#### 4. Configure Docker User (Optional but Recommended)
+
+```bash
+# Add current user to docker group to run docker without sudo
+sudo usermod -aG docker $USER
+
+# Apply group membership (or logout/login)
+newgrp docker
+
+# Test docker without sudo
+docker ps
+```
+
+#### 5. Install Git and Essential Tools
+
+```bash
+# Install Git
+sudo apt install git -y
+
+# Install other useful tools
+sudo apt install htop nano wget curl unzip -y
+
+# Verify Git installation
+git --version
+```
+
+#### 6. Configure Firewall (UFW)
+
+```bash
+# Enable UFW firewall
+sudo ufw enable
+
+# Allow SSH (if not already configured)
+sudo ufw allow ssh
+
+# Allow HTTP and HTTPS
+sudo ufw allow 80
+sudo ufw allow 443
+
+# Check status
+sudo ufw status
+```
+
+#### 7. Set Up Directory Structure
+
+```bash
+# Create directory for the application
+sudo mkdir -p /opt/portfolio
+sudo chown $USER:$USER /opt/portfolio
+
+# Set proper permissions
+chmod 755 /opt/portfolio
+```
+
 ### Prerequisites
 
-- Docker and Docker Compose installed
-- Domain name pointing to the server IP
-- Git access to the repository
+After completing the server preparation above, ensure you have:
+
+- ✅ Docker and Docker Compose installed and running
+- ✅ Domain name pointing to the server IP
+- ✅ Git access to the repository
+- ✅ Firewall configured (ports 80, 443 open)
+- ✅ Application directory created (`/opt/portfolio`)
 
 ### Deployment Architecture
 
