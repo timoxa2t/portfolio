@@ -3,11 +3,6 @@
 # Initial Let's Encrypt certificate setup script for tymoshov.net.ua
 # Usage: ./init-letsencrypt.sh <email>
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <email> <domain>"
-    echo "Example: $0 admin@gmail.com tymoshov.info"
-    exit 1
-fi
 
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <email> <domain>"
