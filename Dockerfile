@@ -10,7 +10,15 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev
+
+# Configure npm for low memory systems
+RUN npm config set fetch-retry-mintimeout 20000 && \
+  npm config set fetch-retry-maxtimeout 120000 && \
+  npm config set fetch-timeout 600000 && \
+  npm config set maxsockets 1
+
+# Install dependencies with memory optimizations
+RUN npm ci --omit=dev --prefer-offline --no-audit --no-fund --maxsockets=1
 
 
 # Rebuild the source code only when needed
