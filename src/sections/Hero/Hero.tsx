@@ -6,8 +6,20 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import { useTranslations } from "next-intl";
 import s from "./Hero.module.scss";
-import { Planets } from "@/modules/Planets/Planets";
 import cn from "classnames";
+import dynamic from "next/dynamic";
+
+// Dynamically import Planets component to prevent SSR issues with p5.js
+const Planets = dynamic(
+  () =>
+    import("@/modules/Planets/Planets").then((mod) => ({
+      default: mod.Planets,
+    })),
+  {
+    ssr: false,
+    loading: () => <div style={{ width: "100%", height: "100%" }} />,
+  }
+);
 
 export const Hero: FC = () => {
   const t = useTranslations("hero");
