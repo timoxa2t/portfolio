@@ -47,10 +47,10 @@ configure_system() {
     echo "⚙️  Configuring system for low memory..."
     
     # Set vm.swappiness to use swap more aggressively
-    echo "vm.swappiness=60" > /proc/sys/vm/swappiness
+    sysctl vm.swappiness=60
     
     # Reduce memory pressure
-    echo "vm.vfs_cache_pressure=50" > /proc/sys/vm/vfs_cache_pressure
+    sysctl vm.vfs_cache_pressure=50
     
     # Make settings permanent
     cat >> /etc/sysctl.conf << EOF
