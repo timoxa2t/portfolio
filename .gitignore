@@ -19,6 +19,7 @@
 
 # production
 /build
+/docker/prod/portfolio-app.tar
 
 # misc
 .DS_Store
