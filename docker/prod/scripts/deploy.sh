@@ -44,7 +44,10 @@ fi
 echo "🐳 Building and starting containers..."
 if [ "$total_mem" -lt 1024 ]; then
     echo "📦 Using memory-optimized build..."
-    DOCKER_BUILDKIT=1 docker compose up -d --build
+    # Set build args for low memory systems
+    export DOCKER_BUILDKIT=1
+    docker compose build --build-arg LOW_MEMORY=true --build-arg NODE_OPTIONS="--max-old-space-size=256"
+    docker compose up -d
 else
     docker compose up -d --build
 fi

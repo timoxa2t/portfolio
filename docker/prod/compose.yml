@@ -4,6 +4,9 @@ services:
     build:
       context: ../../
       dockerfile: Dockerfile
+      args:
+        LOW_MEMORY: ${LOW_MEMORY:-false}
+        NODE_OPTIONS: ${NODE_OPTIONS:-"--max-old-space-size=512"}
     restart: unless-stopped
     environment:
       - NODE_ENV=production

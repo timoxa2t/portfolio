@@ -67,16 +67,79 @@ build_with_constraints() {
     
     cd "$(dirname "$0")/.."
     
-    # Build with limited resources
-    DOCKER_BUILDKIT=1 docker build \
-        --memory=400m \
-        --memory-swap=1g \
+    # Clean up Docker to free memory
+    echo "🧹 Cleaning Docker cache..."
+    docker system prune -f --volumes || true
+    docker builder prune -f || true
+    
+    # Build with limited resources and Next.js optimizations
+    echo "📦 Building with memory optimizations..."
+    
+    # Try normal memory limits first
+    if DOCKER_BUILDKIT=1 docker build \
+        --memory=450m \
+        --memory-swap=1200m \
         --cpu-shares=512 \
+        --build-arg NODE_OPTIONS="--max-old-space-size=256" \
+        --build-arg LOW_MEMORY=false \
         -f ../../Dockerfile \
         -t portfolio-app:latest \
-        ../..
-    
-    echo "✅ Docker build completed"
+        ../..; then
+        echo "✅ Docker build completed successfully"
+    else
+        echo "⚠️  First build attempt failed, trying with low-memory optimizations..."
+        
+        # Second attempt with low-memory mode enabled
+        DOCKER_BUILDKIT=1 docker build \
+            --memory=350m \
+            --memory-swap=1500m \
+            --cpu-shares=256 \
+            --build-arg NODE_OPTIONS="--max-old-space-size=200" \
+            --build-arg LOW_MEMORY=true \
+            --no-cache \
+            -f ../../Dockerfile \
+            -t portfolio-app:latest \
+            ../..
+        
+        if [ $? -eq 0 ]; then
+            echo "✅ Docker build completed with low-memory optimizations"
+        else
+            echo "❌ Build failed even with low-memory optimizations"
+            echo ""
+            echo "🔄 Trying one final approach with absolute minimal resources..."
+            
+            # Final attempt: Build with absolute minimum resources
+            DOCKER_BUILDKIT=0 docker build \
+                --memory=300m \
+                --memory-swap=2g \
+                --cpu-shares=128 \
+                --shm-size=64m \
+                --build-arg NODE_OPTIONS="--max-old-space-size=150" \
+                --build-arg LOW_MEMORY=true \
+                --no-cache \
+                -f ../../Dockerfile \
+                -t portfolio-app:latest \
+                ../..
+            
+            if [ $? -eq 0 ]; then
+                echo "✅ Build succeeded with absolute minimal resources"
+            else
+                echo "❌ All build attempts failed"
+                echo ""
+                echo "💡 Possible solutions:"
+                echo "   1. Upgrade to a droplet with more RAM (1GB+)"
+                echo "   2. Build locally and push to Docker registry"
+                echo "   3. Use a CI/CD service with more resources"
+                echo "   4. Try building the project components separately"
+                echo ""
+                echo "🔍 Debug information:"
+                echo "   - Check available memory: free -h"
+                echo "   - Check swap space: swapon --show"
+                echo "   - Monitor build: docker stats during build"
+                exit 1
+            fi
+        fi
+    fi
 }
 
 # Function to cleanup

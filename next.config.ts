@@ -5,11 +5,47 @@ const nextConfig: NextConfig = {
   compress: true,
   output: "standalone",
 
-  // Image optimization
+  // Optimize build for low memory systems
+  experimental: {
+    workerThreads: false,
+  },
+
+  // Minimize webpack configuration for memory efficiency
+  webpack: (config) => {
+    // Reduce memory usage
+    config.optimization = {
+      ...config.optimization,
+      minimize: true,
+      splitChunks: {
+        chunks: "all",
+        maxSize: 244 * 1024, // 244KB chunks
+        cacheGroups: {
+          default: {
+            minChunks: 1,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            priority: -10,
+            chunks: "all",
+          },
+        },
+      },
+    };
+
+    // Limit parallel processing
+    config.parallelism = 1;
+
+    return config;
+  },
+
+  // Image optimization - reduced for memory efficiency
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ["image/webp"], // Only WebP to reduce processing
+    deviceSizes: [640, 750, 1080, 1200], // Fewer sizes
+    imageSizes: [16, 32, 64, 128, 256], // Fewer sizes
   },
 
   // Headers for performance
