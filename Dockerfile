@@ -62,8 +62,9 @@ RUN if [ "$LOW_MEMORY" = "true" ]; then \
 # Build with memory constraints and monitoring
 RUN if [ "$LOW_MEMORY" = "true" ]; then \
   echo "Memory before build:" && free -h 2>/dev/null || echo "Memory info not available" && \
-  export NODE_OPTIONS="--max-old-space-size=100 --optimize-for-size --gc-interval=100" && \
+  export NODE_OPTIONS="--max-old-space-size=150" && \
   export NEXT_TELEMETRY_DISABLED=1 && \
+  export npm_config_cache=/tmp/.npm && \
   echo "Using NODE_OPTIONS for low memory: $NODE_OPTIONS"; \
   else \
   export NODE_OPTIONS="${NODE_OPTIONS:-"--max-old-space-size=512"}" && \
